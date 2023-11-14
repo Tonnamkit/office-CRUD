@@ -87,11 +87,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">SUBMIT</button>
+                            <div class="row ">
+                                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                            </div>
                         </form>
-                        <h5 class="mt-3">${addStatus}</h5>
+                        <h5 class="mt-3 text-danger">${addStatus}</h5>
                     </div>
                 </div>
+        </div>
+        <div class="row mt-3 text-center">
+            <div class="col-12">
+                <a href="office-management" class="btn btn-secondary">Back</a>
+            </div>
         </div>
     </div>
 </body>

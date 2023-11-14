@@ -14,24 +14,19 @@ import static sit.int202.officemanagement.util.Utill.isNullOrEmpty;
 
 @WebServlet(name = "OfficeAddUpdateServlet", value = "/093/office-form")
 public class OfficeAddUpdateServlet extends HttpServlet {
-    private OfficeRepository officeRepository;
-
-    @Override
-    public void init() throws ServletException {
-        officeRepository = new OfficeRepository();
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OfficeRepository officeRepository = new OfficeRepository();
         String add = request.getParameter("insert");
         String editOfficeCode = request.getParameter("editOffice");
         if (add != null){
             request.setAttribute("add", add);
         }else {
+            Office updateOffice = officeRepository.find(editOfficeCode);
             request.getSession().setAttribute("editOffice",editOfficeCode);
+            setOfficeAttributes(request, updateOffice);
             request.setAttribute("add",null);
         }
-//        request.setAttribute("statusMsg", null);
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
         }
 
@@ -48,10 +43,10 @@ public class OfficeAddUpdateServlet extends HttpServlet {
     }
 
     private void handleUpdate(HttpServletRequest request, HttpServletResponse response,String editOfficeCode) throws ServletException, IOException {
+        OfficeRepository officeRepository = new OfficeRepository();
         Office updateOffice = officeRepository.find(editOfficeCode);
         String message;
         if (updateOffice != null) {
-            setOfficeAttributes(request, updateOffice);
             if (isNullOrEmpty(request.getParameter("city")) ||
                     isNullOrEmpty(request.getParameter("phone")) || isNullOrEmpty(request.getParameter("addressLine1")) ||
                     isNullOrEmpty(request.getParameter("country")) || isNullOrEmpty(request.getParameter("postalCode")) ||
@@ -69,6 +64,9 @@ public class OfficeAddUpdateServlet extends HttpServlet {
                 updateOffice.setTerritory(request.getParameter("territory"));
                 if (officeRepository.update(updateOffice)) {
                     message = "Update Office Successfully";
+                    request.getSession().setAttribute("statusMsg", message);
+                    response.sendRedirect(request.getContextPath() + "/093/office-management?officeList=all");
+                    return;
                 } else {
                     message = "Fail To Update";
                 }
@@ -82,6 +80,7 @@ public class OfficeAddUpdateServlet extends HttpServlet {
     }
 
     private void handleAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OfficeRepository officeRepository = new OfficeRepository();
         request.setAttribute("add","add");
         String officeCode = request.getParameter("officeCode");
         String message;
@@ -96,6 +95,9 @@ public class OfficeAddUpdateServlet extends HttpServlet {
 
             if (officeRepository.insert(newOffice)) {
                 message = "Add Successfully";
+                request.getSession().setAttribute("statusMsg", message);
+                response.sendRedirect(request.getContextPath()+ "/093/office-management?officeList=all");
+                return;
             } else {
                 message = "Fail to Add Office";
             }

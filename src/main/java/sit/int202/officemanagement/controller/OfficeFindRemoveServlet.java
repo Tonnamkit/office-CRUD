@@ -13,16 +13,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static sit.int202.officemanagement.util.Utill.isNullOrEmpty;
+
 @WebServlet(name = "OfficeUpdateServlet", value = "/093/office-management")
 public class OfficeFindRemoveServlet extends HttpServlet {
-    private OfficeRepository officeRepository;
-    @Override
-    public void init() throws ServletException {
-        officeRepository = new OfficeRepository();
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        officeRepository.clearEntityManagerCache();
+        OfficeRepository officeRepository = new OfficeRepository();
 
         List<Office> officeList = officeRepository.findAll();
         Set<String> uniqueSetCountry = new HashSet<>();
@@ -55,13 +51,14 @@ public class OfficeFindRemoveServlet extends HttpServlet {
     }
 
     private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String officeCode = request.getParameter("removeOffice") == null? request.getParameter("officeRemoveCode"): request.getParameter("removeOffice");
+        OfficeRepository officeRepository = new OfficeRepository();
+        String officeCode = request.getParameter("officeRemoveCode");
         String message;
-        if (officeCode != null){
+        if (!isNullOrEmpty(officeCode)){
             Office office = officeRepository.find(officeCode);
             if (office != null) {
                 if (officeRepository.delete(office)) {
-                    message = "Remove Office Succesfully";
+                    message = "Remove Office Successfully";
                 } else {
                     message = "Failed To Remove Office";
                 }
