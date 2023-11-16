@@ -69,7 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="country">Country:</label>
-                                        <input type="text" id="country" name="country" class="form-control" value="${updateOffice != null?updateOffice.state:null}">
+                                        <input type="text" id="country" name="country" class="form-control" value="${updateOffice != null?updateOffice.country:null}">
                                     </div>
                                 </div>
                             </div>
