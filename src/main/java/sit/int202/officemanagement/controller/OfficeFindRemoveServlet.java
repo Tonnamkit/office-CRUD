@@ -15,11 +15,10 @@ import java.util.Set;
 
 import static sit.int202.officemanagement.util.Utill.isNullOrEmpty;
 
-@WebServlet(name = "OfficeUpdateServlet", value = "/093/office-management")
+@WebServlet(name = "OfficeFindRemoveServlet", value = "/093/office-management")
 public class OfficeFindRemoveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OfficeRepository officeRepository = new OfficeRepository();
-
         List<Office> officeList = officeRepository.findAll();
         Set<String> uniqueSetCountry = new HashSet<>();
         Set<String> uniqueSetCity = new HashSet<>();
@@ -52,7 +51,7 @@ public class OfficeFindRemoveServlet extends HttpServlet {
 
     private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         OfficeRepository officeRepository = new OfficeRepository();
-        String officeCode = request.getParameter("officeRemoveCode");
+        String officeCode = request.getParameter("officeRemoveCode") == null?request.getParameter("removeOffice"):request.getParameter("officeRemoveCode");
         String message;
         if (!isNullOrEmpty(officeCode)){
             Office office = officeRepository.find(officeCode);

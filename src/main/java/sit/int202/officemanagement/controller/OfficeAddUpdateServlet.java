@@ -22,10 +22,9 @@ public class OfficeAddUpdateServlet extends HttpServlet {
         if (add != null){
             request.setAttribute("add", add);
         }else {
-            Office updateOffice = officeRepository.find(editOfficeCode);
             request.getSession().setAttribute("editOffice",editOfficeCode);
-            setOfficeAttributes(request, updateOffice);
-            request.setAttribute("add",null);
+            Office updateOffice = officeRepository.find(editOfficeCode);
+            request.setAttribute("updateOffice",updateOffice);
         }
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
         }
@@ -107,16 +106,6 @@ public class OfficeAddUpdateServlet extends HttpServlet {
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
     }
 
-    private void setOfficeAttributes(HttpServletRequest request, Office office) {
-        request.setAttribute("city", office.getCity());
-        request.setAttribute("phone", office.getPhone());
-        request.setAttribute("addressLine1", office.getAddressLine1());
-        request.setAttribute("addressLine2", office.getAddressLine2());
-        request.setAttribute("state", office.getState());
-        request.setAttribute("country", office.getCountry());
-        request.setAttribute("postalCode", office.getPostalCode());
-        request.setAttribute("territory", office.getTerritory());
-    }
 
     private Office createOfficeFromRequest(HttpServletRequest request) {
         Office newOffice = new Office();

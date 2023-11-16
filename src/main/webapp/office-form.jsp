@@ -41,35 +41,35 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="city">City:</label>
-                                        <input type="text" id="city" name="city" class="form-control">
+                                        <input type="text" id="city" name="city" class="form-control" value="${updateOffice != null?updateOffice.city:null}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone">Phone Number:</label>
-                                        <input type="text" id="phone" name="phone" class="form-control">
+                                        <input type="text" id="phone" name="phone" class="form-control" value="${updateOffice != null?updateOffice.phone:null}">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="addressLine1">Address Line 1:</label>
-                                <input type="text" id="addressLine1" name="addressLine1" class="form-control">
+                                <input type="text" id="addressLine1" name="addressLine1" class="form-control" value="${updateOffice != null?updateOffice.addressLine1:null}">
                             </div>
                             <div class="form-group">
                                 <label for="addressLine2">Address Line 2:</label>
-                                <input type="text" id="addressLine2" name="addressLine2" class="form-control">
+                                <input type="text" id="addressLine2" name="addressLine2" class="form-control" value="${updateOffice != null?updateOffice.addressLine2:null}">
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="state">State:</label>
-                                        <input type="text" id="state" name="state" class="form-control">
+                                        <input type="text" id="state" name="state" class="form-control" value="${updateOffice != null?updateOffice.state:null}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="country">Country:</label>
-                                        <input type="text" id="country" name="country" class="form-control">
+                                        <input type="text" id="country" name="country" class="form-control" value="${updateOffice != null?updateOffice.state:null}">
                                     </div>
                                 </div>
                             </div>
@@ -77,13 +77,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="postalCode">Postal Code:</label>
-                                        <input type="text" id="postalCode" name="postalCode" class="form-control">
+                                        <input type="text" id="postalCode" name="postalCode" class="form-control" value="${updateOffice != null?updateOffice.postalCode:null}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="territory">Territory:</label>
-                                        <input type="text" id="territory" name="territory" class="form-control">
+                                        <input type="text" id="territory" name="territory" class="form-control" value="${updateOffice != null?updateOffice.territory:null}">
                                     </div>
                                 </div>
                             </div>
