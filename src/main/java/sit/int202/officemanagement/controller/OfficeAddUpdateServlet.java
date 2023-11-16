@@ -22,7 +22,6 @@ public class OfficeAddUpdateServlet extends HttpServlet {
         if (add != null){
             request.setAttribute("add", add);
         }else {
-            request.getSession().setAttribute("editOffice",editOfficeCode);
             Office updateOffice = officeRepository.find(editOfficeCode);
             request.setAttribute("updateOffice",updateOffice);
         }
@@ -34,7 +33,7 @@ public class OfficeAddUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        String editOffice = (String) request.getSession().getAttribute("editOffice");
+        String editOffice = request.getParameter("officeUpdateCode");
         if ("add".equals(action)) {
             handleAdd(request, response);
         } else if ("update".equals(action)) {

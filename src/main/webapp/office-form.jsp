@@ -86,6 +86,9 @@
                                 </div>
                             </div>
                             <div class="row ">
+                                <c:if test="${add == null}">
+                                <input type="hidden" name="officeUpdateCode" value="${updateOffice.officeCode}">
+                                </c:if>
                                 <button type="submit" class="btn btn-primary">SUBMIT</button>
                             </div>
                         </form>
