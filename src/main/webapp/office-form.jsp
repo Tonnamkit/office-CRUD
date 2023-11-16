@@ -35,8 +35,6 @@
                         <form action="office-form" method="post">
                             <input type="hidden" name="action" value="update">
                             </c:if>
-
-
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">

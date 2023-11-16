@@ -29,13 +29,6 @@ public class OfficeRepository {
             entityManager.close();
         }
     }
-
-    public void clearEntityManagerCache() {
-        EntityManager entityManager = getEntityManager();
-        if (entityManager != null) {
-            entityManager.clear();
-        }
-    }
     public boolean insert(Office office) {
         try {
             EntityManager entityManager = getEntityManager();

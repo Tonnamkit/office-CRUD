@@ -26,8 +26,9 @@ public class OfficeAddUpdateServlet extends HttpServlet {
             Office updateOffice = officeRepository.find(editOfficeCode);
             request.setAttribute("updateOffice",updateOffice);
         }
+        officeRepository.close();
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
-        }
+    }
 
 
     @Override
@@ -73,7 +74,7 @@ public class OfficeAddUpdateServlet extends HttpServlet {
         } else {
             message = "Office Not Found";
         }
-
+        officeRepository.close();
         request.setAttribute("addStatus", message);
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
     }
@@ -101,7 +102,7 @@ public class OfficeAddUpdateServlet extends HttpServlet {
                 message = "Fail to Add Office";
             }
         }
-
+        officeRepository.close();
         request.setAttribute("addStatus", message);
         request.getRequestDispatcher("/office-form.jsp").forward(request, response);
     }
